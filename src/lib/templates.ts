@@ -786,7 +786,7 @@ function renderFooter(): string {
         </div>
       </div>
       </div>
-      <span class = "footer-copyrights">© 2026 by ${escapeHtml(SITE.ownerName)} - All Rights Reserved</span>
+      <span class = "footer-copyrights">© 2026 by Mathieu Chaffard and Abderrahmane Ould Bay - All Rights Reserved</span>
     </footer>
   `;
 }
@@ -896,7 +896,7 @@ function renderBasePage(options: PageOptions): string {
 
 export function renderHomePage(episodes: Episode[], tags: string[]): string {
   const latest = episodes[0];
-  const featured = episodes.slice(1);
+  const featured = selectMixedEpisodes(episodes.slice(1), episodes.length - 1);
   const latestGuest = displayGuestName(latest);
   const latestCompany = displayCompanyName(latest);
   const stickyPlayerEpisode = episodes.find((episode) => Boolean(episode.previewAudio)) ?? latest;
@@ -1149,16 +1149,20 @@ export function renderAboutPage(episodes: Episode[]): string {
       <main>
         <section class="page-hero page-hero--legacy page-hero--about">
           <div class="container about-grid about-grid--legacy">
-            <h1 class="about-name about-name--mobile">${escapeHtml(SITE.ownerName)}</h1>
             <div class="about-photo">
               <img src="${escapeAttribute(assetPath(SITE.hostPhoto))}" alt="${escapeAttribute(
       SITE.ownerName
     )}" decoding="async">
             </div>
+            <h1 class="about-name about-name--mobile">${escapeHtml(SITE.ownerName)}</h1>
             <div class="about-copy">
               <h1 class="about-name about-name--desktop">${escapeHtml(SITE.ownerName)}</h1>
-              <p class="about-role">${escapeHtml(SITE.hostTitle)}</p>
-              <p>${escapeHtml(SITE.hostBio)}</p>
+              <div class="about-bio">
+                ${SITE.hostBio
+                  .split("\n\n")
+                  .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+                  .join("")}
+              </div>
               <div class="about-contact">
                 <p class="about-contact__label">Reach out by email or connect on LinkedIn.</p>
                 <div class="about-contact__actions">

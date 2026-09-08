@@ -3043,7 +3043,6 @@ footer{
   .about-name--mobile {
     display: block;
     margin: 0;
-    color: var(--blue);
     font-size: clamp(1.75rem, 8vw, 2.25rem);
     line-height: 1.08;
     text-align: center;
@@ -3182,6 +3181,8 @@ footer{
   .brand-hero__statement {
     width: 100%;
     min-width: 0;
+    justify-content: center;
+    text-align: center;
   }
 
   .brand-hero__statement .brand-hero__mobile-title {
@@ -3195,5 +3196,62 @@ footer{
     font-size: clamp(1.45rem, 7vw, 2.1rem);
     white-space: normal;
     overflow-wrap: anywhere;
+  }
+}
+
+/* Latest responsive feedback. */
+@media (max-width: 700px) {
+  .support-carousel {
+    overflow: hidden;
+    scroll-snap-type: none;
+  }
+
+  .support-carousel__track {
+    gap: 2.5rem;
+    padding: 0;
+    animation: scrollLogos 25s linear infinite;
+    animation-play-state: running !important;
+  }
+
+  .support-carousel__link {
+    width: auto;
+    min-width: 190px;
+    min-height: 140px;
+    scroll-snap-align: none;
+  }
+
+  .support-carousel__link--duplicate {
+    display: grid;
+  }
+
+  .page-hero--about .about-photo {
+    order: 1;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  .page-hero--about .about-photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .page-hero--about .about-name--mobile {
+    order: 2;
+    margin-top: 0;
+  }
+
+  .page-hero--about .about-copy {
+    order: 3;
+    align-items: center;
+    text-align: center;
+  }
+
+  .page-hero--about .about-bio,
+  .page-hero--about .about-bio p {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
   }
 }

@@ -20,7 +20,7 @@ export const SITE = {
     extendedDescription: "In each episode, we sit down with some of the brightest minds who are using technology to rethink the way we care.",
     domain: "www.impulsepodcast.com",
     ownerName: "Mathieu Chaffard",
-    hostBio: "Professionally, I am a biomedical engineer working in the digital health space. Being passionate about medical technology and a true podcast enthusiast, I started Impulse in 2022 to learn more about the latest advances in the field, and to meet the stakeholders redefining the limits of what is possible. I hope these in-depth conversations, from surgical robotics to spatial biology, give you practical learnings and a glimpse of what the future of healthcare could be.",
+    hostBio: "Thanks for stopping by the podcast website!\n\nProfessionally, I am a biomedical engineer working in the digital health space.\n\nBeing passionate about medical technology and a true podcast enthusiast, I decided to start Impulse in 2022 to learn more about the latest advances in the field, and to meet the stakeholders redefining the limits of what is possible in this regard.\n\nI hope you will enjoy these in-depth conversations on topics ranging from surgical robotics to spatial biology, that you can feed off the learnings from them, and that they give you a glimpse of what the future of healthcare could be!",
     hostTitle: "Biomedical engineer, host, and healthcare technology operator",
     hostPhoto: "/static/images/site/host-photo.jpg",
     assets: {
