@@ -340,7 +340,7 @@ code {
   grid-template-areas:
     "content image"
     "excerpt image";
-  grid-template-columns: 1fr 0.95fr;
+  grid-template-columns: 1fr 1.1fr;
   grid-template-rows: auto 1fr;
   gap: 2.5rem 3.25rem;
   align-items: start;
@@ -705,11 +705,19 @@ code {
 
 .episode-card {
   overflow: hidden;
+  border-radius: 28px;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.episode-card:hover,
+.episode-card:focus-visible {
+  outline: 2px;
+  transform: translateY(-3px);
 }
 
 .episode-card__image img {
+  display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
