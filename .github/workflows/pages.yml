@@ -33,16 +33,10 @@ jobs:
         run: npm ci
 
       - name: Build static site for GitHub Pages
+        env:
+          SITE_BASE_PATH: ""
+          SITE_URL: "https://www.impulsepodcast.com"
         run: |
-          REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          if [[ "${REPO_NAME}" == *.github.io ]]; then
-            export SITE_BASE_PATH=""
-            export SITE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io"
-          else
-            export SITE_BASE_PATH="/${REPO_NAME}"
-            export SITE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}"
-          fi
-
           npm run validate:episodes
           npm run build
 

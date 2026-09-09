@@ -161,7 +161,7 @@ It:
 
 - installs dependencies
 - validates markdown episodes
-- builds the site with a GitHub Pages base path
+- builds the site at the root of `https://www.impulsepodcast.com`
 - uploads the generated `public/` folder as the Pages artifact
 
 To use it:
@@ -170,10 +170,7 @@ To use it:
 2. In the repository settings, open `Pages`.
 3. Set the source to `GitHub Actions`.
 
-The workflow automatically handles both:
-
-- user or org Pages repos like `your-name.github.io`
-- project Pages repos like `your-name.github.io/impulse_website`
+The workflow uses an empty `SITE_BASE_PATH` because the configured custom domain serves the site at `/`, not at `/impulse_website`.
 
 The build now also emits:
 

@@ -1,6 +1,6 @@
 @font-face {
   font-family: "GothamBold";
-  src: url("../fonts/gotham-bold.otf") format("otf");
+  src: url("../fonts/Gotham Bold.otf") format("otf");
   font-display: swap;
   font-weight: 700;
   font-style: normal;
@@ -8,29 +8,11 @@
 
 @font-face {
   font-family: "GothamLight";
-  src: url("../fonts/gotham-light.otf") format("otf");
+  src: url("../fonts/Gotham Light.otf") format("otf");
   font-display: swap;
   font-weight: 400;
   font-style: normal;
 }
-
-/* @font-face {
-  font-family: "ImpulseBody";
-  src: url("../fonts/impulse-body.otf") format("otf");
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "ImpulseBody";
-  src:
-    url("https://static.wixstatic.com/ufonts/8beef2_5544fc0773134ef38460b41e9afd1bf1/woff2/file.woff2")
-      format("woff2"),
-    url("https://static.wixstatic.com/ufonts/8beef2_5544fc0773134ef38460b41e9afd1bf1/woff/file.woff")
-      format("woff");
-  font-display: swap;
-} */
 
 :root {
   --blue: #304cf4;
@@ -57,7 +39,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "GothamLight",  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "GothamBold",  "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
 }
 
@@ -453,7 +435,7 @@ code {
   color: #555;
   font-size: 0.95rem;
   line-height: 1.6;
-  font-family:  "GothamLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 
@@ -465,7 +447,7 @@ code {
   width: 100%;
   margin: 0 auto;
   color: var(--muted);
-  font-family:  "GothamLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .episode-notes__surface {
@@ -543,7 +525,7 @@ code {
 }
 
 .episode-summary {
-  font-family:  "GothamLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 
@@ -996,7 +978,7 @@ code {
 .testimonial-card__quote {
   margin: 0;
   color: var(--muted);
-  font-family:  "GothamLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.88rem;
   line-height: 1.55;
   font-weight: 300;
@@ -2676,7 +2658,7 @@ footer{
 
 .episode-transcript__body p {
   color: #40445c;
-  font-family:  "GothamLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.98rem;
   line-height: 1.72;
 }

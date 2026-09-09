@@ -682,8 +682,6 @@ function renderBasePage(options) {
     <meta property="og:description" content="${escapeAttribute(description)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${escapeAttribute(siteUrlForPath(options.path))}">
-    <link rel="preconnect" href="https://static.wixstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="//static.wixstatic.com">
     <link rel="stylesheet" href="${escapeAttribute(sitePath("/static/styles.css"))}">
   </head>
   <body>
