@@ -1,20 +1,23 @@
+/* Explicit font faces keep the same hierarchy in live pages and static previews. */
+@font-face {
+  font-family: "GothamLight";
+  src: url("../fonts/gotham-light.otf") format("opentype");
+  font-display: swap;
+  font-weight: 300;
+  font-style: normal;
+}
+
 @font-face {
   font-family: "GothamBold";
-  src: url("../fonts/Gotham Bold.otf") format("otf");
+  src: url("../fonts/gotham-bold.otf") format("opentype");
   font-display: swap;
   font-weight: 700;
   font-style: normal;
 }
 
-@font-face {
-  font-family: "GothamLight";
-  src: url("../fonts/Gotham Light.otf") format("otf");
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
-
 :root {
+  --font-body: "GothamLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --blue: #304cf4;
   --pink: #ef2b83;
   --cyan: #1fe3e3;
@@ -39,8 +42,23 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "GothamBold",  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-synthesis: none;
   line-height: 1.5;
+}
+
+/* Titles and emphasis lead; paragraphs, quotations, and metadata stay light. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 img {
@@ -110,14 +128,13 @@ code {
 .spotlight-card h2,
 .home-archive__heading,
 .latest-hero__guest,
-.latest-hero__company,
 .latest-hero__number,
 .latest-hero__title,
 .episode-card h3,
-.latest-hero__company,
 .subscribe-strip h2,
 .newsletter-strip h2 {
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 .nav-link {
@@ -207,7 +224,8 @@ code {
   y: -100;
   margin: 0;
   color: var(--cyan);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: clamp(1.3rem, 1.5vw, 0.5rem);
   line-height: 1.04;
   text-align: right;
@@ -364,6 +382,8 @@ code {
 }
 
 .latest-hero__company {
+  font-family: var(--font-body);
+  font-weight: 300;
   color: var(--blue);
 }
 
@@ -435,7 +455,7 @@ code {
   color: #555;
   font-size: 0.95rem;
   line-height: 1.6;
-  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   font-weight: 300;
 }
 
@@ -447,7 +467,8 @@ code {
   width: 100%;
   margin: 0 auto;
   color: var(--muted);
-  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
 }
 
 .episode-notes__surface {
@@ -464,7 +485,8 @@ code {
 .episode-notes__inner h3 {
   margin: 2rem 0 0.85rem;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 .episode-notes__inner h2:first-child,
@@ -486,6 +508,7 @@ code {
 .episode-notes__inner li {
   font-size: 1.06rem;
   line-height: 1.82;
+  font-family: var(--font-body);
   font-weight: 300;
 }
 
@@ -503,6 +526,7 @@ code {
   text-decoration: underline;
   text-decoration-thickness: 0.12em;
   text-underline-offset: 0.16em;
+  font-family: var(--font-body);
   font-weight: 300;
 }
 
@@ -520,12 +544,13 @@ code {
 
 .episode-notes__inner strong,
 .latest-hero__excerpt strong {
+  font-family: var(--font-heading);
   font-weight: 700;
   color: var(--text);
 }
 
 .episode-summary {
-  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   font-weight: 300;
 }
 
@@ -575,7 +600,8 @@ code {
   top: 1rem;
   right: 1rem;
   color: var(--cyan);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 1.8rem;
 }
 
@@ -584,7 +610,8 @@ code {
   align-items: center;
   justify-content: center;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 1.05rem;
   text-align: center;
 }
@@ -782,7 +809,8 @@ code {
   border: 0;
   background: transparent;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
 }
@@ -830,7 +858,8 @@ code {
   border-radius: 999px;
   background: #fff;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.94rem;
   cursor: pointer;
   transition:
@@ -893,7 +922,8 @@ code {
 .about-contact__label {
   margin: 0;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 1rem;
 }
 
@@ -978,10 +1008,10 @@ code {
 .testimonial-card__quote {
   margin: 0;
   color: var(--muted);
-  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
   font-size: 0.88rem;
   line-height: 1.55;
-  font-weight: 300;
 }
 
 .testimonial-card__author {
@@ -991,7 +1021,8 @@ code {
   gap: 0.45rem 0.8rem;
   margin: 0;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1250,7 +1281,8 @@ footer{
 .sticky-player__skip-value {
   position: static;
   font-size: 10px;
-  font-weight: 800;
+  font-family: var(--font-heading);
+  font-weight: 700;
   line-height: 1;
   transform: none;
 }
@@ -1353,7 +1385,8 @@ footer{
 
   color: #203fdc;
   font-size: 14px;
-  font-weight: 750;
+  font-family: var(--font-heading);
+  font-weight: 700;
   line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1523,13 +1556,15 @@ footer{
 
 .sticky-player__title {
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.8rem;
 }
 
 .sticky-player__meta {
   color: var(--pink);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
   font-size: 0.72rem;
 }
 
@@ -2491,7 +2526,8 @@ footer{
 .carousel-status {
   min-width: 3.2rem;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.85rem;
   text-align: center;
 }
@@ -2577,7 +2613,8 @@ footer{
 .episode-transcript summary {
   width: 100%;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
 }
@@ -2614,7 +2651,8 @@ footer{
 .episode-transcript-card__heading h2 {
   margin: 0.25rem 0 0.65rem;
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: var(--section-title-size);
 }
 
@@ -2635,7 +2673,8 @@ footer{
   border-radius: 999px;
   background: var(--cyan);
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.88rem;
   transition: background-color 160ms ease, transform 160ms ease;
 }
@@ -2658,7 +2697,8 @@ footer{
 
 .episode-transcript__body p {
   color: #40445c;
-  font-family:  "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
+  font-weight: 300;
   font-size: 0.98rem;
   line-height: 1.72;
 }
@@ -2705,7 +2745,8 @@ footer{
 }
 
 .episode-video__copy strong {
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: clamp(1.3rem, 2.5vw, 2rem);
   line-height: 1.15;
 }
@@ -2716,7 +2757,8 @@ footer{
   border-radius: 999px;
   background: var(--cyan);
   color: var(--blue);
-  font-family: "GothamBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.9rem;
 }
 
@@ -3084,7 +3126,8 @@ footer{
   }
 }
 
-/* Review carousel: four cards on large screens, three on small screens. */
+/* Review carousel: four cards on large screens, one on small screens. */
+
 .testimonials-grid {
   display: grid;
   grid-template-columns: none;
@@ -3105,6 +3148,15 @@ footer{
 
 .testimonial-card {
   scroll-snap-align: start;
+
+  /* Allows name + country to be pushed to the bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep only the name + country at the bottom of every card */
+.testimonial-author {
+  margin-top: auto;
 }
 
 .testimonials-section .carousel-controls {

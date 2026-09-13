@@ -113,6 +113,36 @@ R2_PUBLIC_BASE_URL=https://assets.impulsepodcast.com npm run build
 
 Only media and downloadable documents move to R2. HTML, CSS, and browser scripts keep their existing hosting path.
 
+### Automatic sync in deployment pipelines
+
+Both the GitHub Pages and Hetzner workflows validate every episode, including new
+markdown files, before uploading media to R2. They then build the site with the
+same public media origin. An upload failure stops deployment.
+
+In the repository's **Settings → Secrets and variables → Actions**, add these secrets:
+
+- `R2_ACCOUNT_ID`
+- `R2_ACCESS_KEY_ID`
+- `R2_SECRET_ACCESS_KEY`
+
+Add these repository variables (secrets with the same names are also supported):
+
+- `R2_BUCKET`, for example `impulse-media`
+- `R2_PUBLIC_BASE_URL`, for example `https://assets.impulsepodcast.com`
+
+Leave all five values unset to publish with local assets. If only some values
+are configured, deployment fails and lists the missing settings. The sync uploads
+the current images, audio, documents, and transcripts without deleting existing
+bucket objects. CI checks the upload plan with a dry run and needs no credentials.
+
+Episode validation checks required frontmatter, duplicate episode numbers and
+slugs, local cover images and preview clips, and downloadable transcripts for
+episodes with a YouTube link. Add new media and transcripts to the repository
+alongside each episode so the pipeline can validate and upload them.
+
+The shared action lives in [.github/actions/sync-r2/action.yml](/Users/myceane/impulse_website/.github/actions/sync-r2/action.yml).
+The upload uses Cloudflare's documented [S3-compatible JavaScript SDK integration](https://developers.cloudflare.com/r2/examples/aws/aws-sdk-js-v3/).
+
 ## Local setup
 
 1. Install dependencies:
@@ -163,6 +193,7 @@ It:
 - validates markdown episodes
 - builds the site at the root of `https://www.impulsepodcast.com`
 - uploads the generated `public/` folder as the Pages artifact
+- syncs media to Cloudflare R2 before building when R2 is configured
 
 To use it:
 
@@ -270,9 +301,9 @@ That script installs production dependencies and restarts the `impulse` service 
 
 Three workflows are included:
 
-- [.github/workflows/ci.yml](/Users/myceane/impulse_website/.github/workflows/ci.yml): installs dependencies, validates markdown episodes, and builds the site
-- [.github/workflows/pages.yml](/Users/myceane/impulse_website/.github/workflows/pages.yml): builds the static site for GitHub Pages and deploys `public/`
-- [.github/workflows/deploy.yml](/Users/myceane/impulse_website/.github/workflows/deploy.yml): manual Hetzner deployment workflow kept for the next step
+- [.github/workflows/ci.yml](/Users/myceane/impulse_website/.github/workflows/ci.yml): validates markdown episodes, builds the site, and checks the R2 upload plan without credentials
+- [.github/workflows/pages.yml](/Users/myceane/impulse_website/.github/workflows/pages.yml): validates episodes, syncs configured R2 media, builds the static site, and deploys `public/` to GitHub Pages
+- [.github/workflows/deploy.yml](/Users/myceane/impulse_website/.github/workflows/deploy.yml): validates episodes, syncs configured R2 media, and manually deploys to Hetzner
 
 For the Hetzner deployment workflow, set these repository secrets:
 

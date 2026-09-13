@@ -29,3 +29,6 @@ jobs:
 
       - name: Build site and sync catalog
         run: npm run build
+
+      - name: Check Cloudflare R2 upload plan (dry run)
+        run: node dist/scripts/push-r2.js

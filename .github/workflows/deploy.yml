@@ -7,17 +7,33 @@ concurrency:
   group: impulse-hetzner
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ secrets.HETZNER_HOST != '' && secrets.HETZNER_USER != '' && secrets.HETZNER_SSH_KEY != '' && secrets.HETZNER_TARGET_DIR != '' }}
     env:
+      HETZNER_HOST: ${{ secrets.HETZNER_HOST }}
+      HETZNER_USER: ${{ secrets.HETZNER_USER }}
       HETZNER_PORT: ${{ secrets.HETZNER_PORT != '' && secrets.HETZNER_PORT || '22' }}
       SERVICE_NAME: ${{ secrets.HETZNER_SERVICE_NAME != '' && secrets.HETZNER_SERVICE_NAME || 'impulse' }}
       APP_PORT: ${{ secrets.APP_PORT != '' && secrets.APP_PORT || '3000' }}
       TARGET_DIR: ${{ secrets.HETZNER_TARGET_DIR }}
 
     steps:
+      - name: Check Hetzner configuration
+        env:
+          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          for setting in HETZNER_HOST HETZNER_USER HETZNER_SSH_KEY TARGET_DIR; do
+            if [[ -z "${!setting}" ]]; then
+              echo "::error::Missing ${setting} for the Hetzner deployment."
+              exit 1
+            fi
+          done
+
       - name: Check out repository
         uses: actions/checkout@v4
 
@@ -33,15 +49,29 @@ jobs:
       - name: Validate markdown episodes
         run: npm run validate:episodes
 
+      - name: Sync media to Cloudflare R2
+        id: r2
+        uses: ./.github/actions/sync-r2
+        with:
+          account-id: ${{ secrets.R2_ACCOUNT_ID }}
+          access-key-id: ${{ secrets.R2_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          bucket: ${{ vars.R2_BUCKET || secrets.R2_BUCKET }}
+          public-base-url: ${{ vars.R2_PUBLIC_BASE_URL || secrets.R2_PUBLIC_BASE_URL }}
+
       - name: Build deployment bundle
+        env:
+          R2_PUBLIC_BASE_URL: ${{ steps.r2.outputs.public-base-url }}
         run: npm run build
 
       - name: Prepare SSH key
+        env:
+          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
         run: |
           mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.HETZNER_SSH_KEY }}" > ~/.ssh/id_ed25519
+          printf '%s\n' "${HETZNER_SSH_KEY}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p "${HETZNER_PORT}" -H "${{ secrets.HETZNER_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -p "${HETZNER_PORT}" -H "${HETZNER_HOST}" >> ~/.ssh/known_hosts
 
       - name: Package deployable files
         run: |
@@ -60,15 +90,15 @@ jobs:
 
       - name: Ensure remote target directory exists
         run: |
-          ssh -p "${HETZNER_PORT}" "${{ secrets.HETZNER_USER }}@${{ secrets.HETZNER_HOST }}" "mkdir -p \"${TARGET_DIR}\""
+          ssh -p "${HETZNER_PORT}" "${HETZNER_USER}@${HETZNER_HOST}" "mkdir -p \"${TARGET_DIR}\""
 
       - name: Upload bundle to Hetzner
         run: |
-          scp -P "${HETZNER_PORT}" impulse-deploy.tgz "${{ secrets.HETZNER_USER }}@${{ secrets.HETZNER_HOST }}:${TARGET_DIR}/impulse-deploy.tgz"
+          scp -P "${HETZNER_PORT}" impulse-deploy.tgz "${HETZNER_USER}@${HETZNER_HOST}:${TARGET_DIR}/impulse-deploy.tgz"
 
       - name: Deploy and restart service
         run: |
-          ssh -p "${HETZNER_PORT}" "${{ secrets.HETZNER_USER }}@${{ secrets.HETZNER_HOST }}" <<EOF
+          ssh -p "${HETZNER_PORT}" "${HETZNER_USER}@${HETZNER_HOST}" <<EOF
           set -euo pipefail
           cd "${TARGET_DIR}"
           tar -xzf impulse-deploy.tgz
