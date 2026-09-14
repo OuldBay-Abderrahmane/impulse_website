@@ -22,7 +22,7 @@ interface PageOptions {
 
 function pageTitle(title: string): string {
   if (title === SITE.name) {
-    return `${SITE.name} | Healthcare Pioneers`;
+    return `${SITE.name} I Meeting Healthcare Pioneers`;
   }
 
   return `${title} | ${SITE.name}`;
@@ -153,10 +153,6 @@ function renderEpisodePlatformCtas(episode: Episode): string {
   return renderSitePlatformLinks(false);
 }
 
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 function buildEpisodeNumberLookup(episodes: Episode[]): Map<number, Episode> {
   return new Map(episodes.map((episode) => [episode.number, episode]));
 }
@@ -182,23 +178,6 @@ function resolveEpisodePageUrl(
   return { href: url, external: /^(?:[a-z]+:)?\/\//i.test(url) };
 }
 
-function highlightBuzzwords(value: string, buzzwords: string[]): string {
-  let highlighted = value;
-
-  for (const buzzword of [...new Set(buzzwords.map((tag) => tag.trim()).filter(Boolean))].sort(
-    (left, right) => right.length - left.length
-  )) {
-    const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escapeRegExp(buzzword)})(?=$|[^A-Za-z0-9])`, "gi");
-    highlighted = highlighted.replace(
-      pattern,
-      (_match, prefix: string, matchedBuzzword: string) =>
-        `${prefix}<strong class="buzzword">${matchedBuzzword}</strong>`
-    );
-  }
-
-  return highlighted;
-}
-
 function serializeJsonScript(value: unknown): string {
   return JSON.stringify(value)
     .replace(/</g, "\\u003c")
@@ -211,13 +190,12 @@ function serializeJsonScript(value: unknown): string {
 function renderMarkdownInline(
   value: string,
   options?: {
-    buzzwords?: string[];
     episodeNumberLookup?: Map<number, Episode>;
   }
 ): string {
   const anchors: string[] = [];
   const withLinksReplaced = escapeHtml(value).replace(
-    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    /\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g,
     (_match, label: string, url: string) => {
       const { href, external } = resolveEpisodePageUrl(url, options?.episodeNumberLookup);
       const anchor = external
@@ -231,17 +209,12 @@ function renderMarkdownInline(
     }
   );
 
-  const highlighted = options?.buzzwords?.length
-    ? highlightBuzzwords(withLinksReplaced, options.buzzwords)
-    : withLinksReplaced;
-
-  return highlighted.replace(/__ANCHOR_(\d+)__/g, (_match, index: string) => anchors[Number(index)] ?? "");
+  return withLinksReplaced.replace(/__ANCHOR_(\d+)__/g, (_match, index: string) => anchors[Number(index)] ?? "");
 }
 
 function renderMarkdownBlocks(
   markdown: string,
   options?: {
-    buzzwords?: string[];
     episodeNumberLookup?: Map<number, Episode>;
   }
 ): string {
@@ -312,7 +285,6 @@ function renderMarkdownBlocks(
 function renderEpisodeBody(
   markdown: string | undefined,
   options?: {
-    buzzwords?: string[];
     episodeNumberLookup?: Map<number, Episode>;
   }
 ): string {
@@ -1062,7 +1034,6 @@ export function renderEpisodePage(episode: Episode, episodes: Episode[]): string
   const stickyPlayerEpisode =
     episode.previewAudio ? episode : (episodes.find((entry) => Boolean(entry.previewAudio)) ?? episode);
   const episodeNumberLookup = buildEpisodeNumberLookup(episodes);
-  const buzzwords = episode.tags;
 
   return renderBasePage({
     title: episode.title,
@@ -1098,13 +1069,12 @@ export function renderEpisodePage(episode: Episode, episodes: Episode[]): string
     )}" decoding="async" fetchpriority="high">
             </a>
             <p class="latest-hero__excerpt">${renderMarkdownInline(episode.summary, {
-              buzzwords,
               episodeNumberLookup
             })}</p>
           </div>
         </section>
 
-        ${renderEpisodeBody(episode.body, { buzzwords, episodeNumberLookup })}
+        ${renderEpisodeBody(episode.body, { episodeNumberLookup })}
         ${renderEpisodeVideo(episode)}
         ${renderEpisodeTranscript(episode)}
 

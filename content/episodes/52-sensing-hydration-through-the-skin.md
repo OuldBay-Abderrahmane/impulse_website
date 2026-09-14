@@ -71,11 +71,9 @@ You can also watch Mark’s TED Talk about the Nanopatch, the needle-free immuni
 
 You can get in touch with Mark via [LinkedIn](https://www.linkedin.com/in/mark-af-kendall/?originalSubdomain=au), and follow WearOptimo’s activities on their [website](https://wearoptimo.com/), [LinkedIn](https://www.linkedin.com/company/wearoptimo/), and [X](https://x.com/wearoptimo).
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
 
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

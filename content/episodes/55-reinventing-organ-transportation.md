@@ -71,11 +71,9 @@ As mentioned by Lisa during the episode, you can have a read at Paragonix Techno
 
 You can get in touch with Lisa via [LinkedIn](https://www.linkedin.com/in/lisa-anderson-2283032b/), and follow Paragonix Technologies’ activities on [LinkedIn](https://www.linkedin.com/company/paragonix/), [X](https://x.com/paragonixsherpa), [Facebook](https://www.facebook.com/paragonixsherpa/), and [YouTube](https://www.youtube.com/channel/UCcSIumk2Sncu0RpzmT1mwnA).
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
 
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

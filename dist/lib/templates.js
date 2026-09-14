@@ -2,7 +2,7 @@ import { PLATFORM_ICON_PATHS, PLATFORM_LABELS, SITE, SUPPORTERS, TESTIMONIALS, a
 import { escapeAttribute, escapeHtml, formatDate } from "./utils.js";
 function pageTitle(title) {
     if (title === SITE.name) {
-        return `${SITE.name} | Healthcare Pioneers`;
+        return `${SITE.name} I Meeting Healthcare Pioneers`;
     }
     return `${title} | ${SITE.name}`;
 }
@@ -97,9 +97,6 @@ function renderEpisodePlatformCtas(episode) {
     }
     return renderSitePlatformLinks(false);
 }
-function escapeRegExp(value) {
-    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 function buildEpisodeNumberLookup(episodes) {
     return new Map(episodes.map((episode) => [episode.number, episode]));
 }
@@ -116,14 +113,6 @@ function resolveEpisodePageUrl(url, episodeNumberLookup) {
     }
     return { href: url, external: /^(?:[a-z]+:)?\/\//i.test(url) };
 }
-function highlightBuzzwords(value, buzzwords) {
-    let highlighted = value;
-    for (const buzzword of [...new Set(buzzwords.map((tag) => tag.trim()).filter(Boolean))].sort((left, right) => right.length - left.length)) {
-        const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escapeRegExp(buzzword)})(?=$|[^A-Za-z0-9])`, "gi");
-        highlighted = highlighted.replace(pattern, (_match, prefix, matchedBuzzword) => `${prefix}<strong class="buzzword">${matchedBuzzword}</strong>`);
-    }
-    return highlighted;
-}
 function serializeJsonScript(value) {
     return JSON.stringify(value)
         .replace(/</g, "\\u003c")
@@ -134,7 +123,7 @@ function serializeJsonScript(value) {
 }
 function renderMarkdownInline(value, options) {
     const anchors = [];
-    const withLinksReplaced = escapeHtml(value).replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_match, label, url) => {
+    const withLinksReplaced = escapeHtml(value).replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, (_match, label, url) => {
         const { href, external } = resolveEpisodePageUrl(url, options?.episodeNumberLookup);
         const anchor = external
             ? `<a class="inline-link" href="${escapeAttribute(href)}" target="_blank" rel="noreferrer">${escapeHtml(label)}</a>`
@@ -143,10 +132,7 @@ function renderMarkdownInline(value, options) {
         anchors.push(anchor);
         return token;
     });
-    const highlighted = options?.buzzwords?.length
-        ? highlightBuzzwords(withLinksReplaced, options.buzzwords)
-        : withLinksReplaced;
-    return highlighted.replace(/__ANCHOR_(\d+)__/g, (_match, index) => anchors[Number(index)] ?? "");
+    return withLinksReplaced.replace(/__ANCHOR_(\d+)__/g, (_match, index) => anchors[Number(index)] ?? "");
 }
 function renderMarkdownBlocks(markdown, options) {
     const lines = markdown.split(/\r?\n/);
@@ -850,7 +836,6 @@ export function renderEpisodePage(episode, episodes) {
     const relatedEpisodes = selectMixedEpisodes(episodes.filter((entry) => entry.slug !== episode.slug), 8);
     const stickyPlayerEpisode = episode.previewAudio ? episode : (episodes.find((entry) => Boolean(entry.previewAudio)) ?? episode);
     const episodeNumberLookup = buildEpisodeNumberLookup(episodes);
-    const buzzwords = episode.tags;
     return renderBasePage({
         title: episode.title,
         path: `/episodes/${episode.slug}`,
@@ -879,13 +864,12 @@ export function renderEpisodePage(episode, episodes) {
               <img src="${escapeAttribute(assetPath(episode.image))}" alt="${escapeAttribute(`${guestName} on Impulse`)}" decoding="async" fetchpriority="high">
             </a>
             <p class="latest-hero__excerpt">${renderMarkdownInline(episode.summary, {
-            buzzwords,
             episodeNumberLookup
         })}</p>
           </div>
         </section>
 
-        ${renderEpisodeBody(episode.body, { buzzwords, episodeNumberLookup })}
+        ${renderEpisodeBody(episode.body, { episodeNumberLookup })}
         ${renderEpisodeVideo(episode)}
         ${renderEpisodeTranscript(episode)}
 

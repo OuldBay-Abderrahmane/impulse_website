@@ -70,11 +70,9 @@ As suggested by Simon during the episode, you can learn more about biofabricatio
 
 You can get in touch with Simon via [LinkedIn](https://www.linkedin.com/in/simonmackenzie1/), and follow Cellbricks Therapeutics’ activities on their [website](https://cellbricks-therapeutics.com/), and [LinkedIn](https://www.linkedin.com/company/18551684/admin/dashboard/).
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
 
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

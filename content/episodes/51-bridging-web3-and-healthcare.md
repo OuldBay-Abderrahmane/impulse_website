@@ -65,11 +65,9 @@ For further information on the topic, she recommends consulting [IEEE.org](http:
 
 You can follow Anca’s activities on [LinkedIn](https://www.linkedin.com/in/ancapetre/), [X](https://x.com/ancampetre), and [YouTube](https://www.youtube.com/channel/UCiXs2IMfeA6ylKZhkqxk9Aw), and discover the other podcasts she is producing for healthcare clients with [MedShake Studio](https://www.medshake-studio.com/)!
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
 
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

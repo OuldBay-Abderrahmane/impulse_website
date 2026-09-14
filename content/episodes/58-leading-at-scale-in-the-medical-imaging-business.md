@@ -62,11 +62,9 @@ Simon also recommends checking out [The Medical Futurist](https://medicalfuturis
 
 You can get in touch with Simon via [LinkedIn](https://www.linkedin.com/in/simonrost/), and follow GE Healthcare’s activities on their [website](https://www.gehealthcare.com/), [LinkedIn](https://www.linkedin.com/company/gehealthcare/), [Facebook](https://www.facebook.com/GEHealthCare/), [Instagram](https://www.instagram.com/gehealthcare), [X](https://x.com/GEHealthcare), and [YouTube](https://www.youtube.com/user/gehealthcare).
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
 
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

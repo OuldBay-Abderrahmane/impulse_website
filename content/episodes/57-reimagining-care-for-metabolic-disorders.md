@@ -75,11 +75,9 @@ You may also read Ihsan’s [publication in NEJM Catalyst Innovations in Care De
 
 You can get in touch with Ihsan via [LinkedIn](https://www.linkedin.com/in/ihsanalmarzooqi/), and follow meta[bolic]’s activities on their [website](https://glucare.health/), [LinkedIn](https://www.linkedin.com/company/glucarehealth/posts/?feedView=all), [Facebook](https://www.facebook.com/Glucare.Health1), [Instagram](https://www.instagram.com/glucare.health/), and [YouTube](https://www.youtube.com/channel/UCj6KIyuBPPa7OOmh8p3yZ6g).
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
 
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

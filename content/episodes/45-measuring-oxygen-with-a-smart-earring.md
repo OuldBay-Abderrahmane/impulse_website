@@ -78,11 +78,8 @@ You can follow OxiWear’s activities on [LinkedIn](https://www.linkedin.com/com
 
 This conversation is part of Impulse's exploration of how medicine, science, and technology are transforming patient care.
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
-
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 

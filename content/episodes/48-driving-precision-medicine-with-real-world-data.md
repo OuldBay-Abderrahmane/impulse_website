@@ -78,11 +78,8 @@ The book recommended by Blythe is [Spillover: Animal Infections and the Next Hum
 
 You can get in touch with Blythe via [LinkedIn](https://www.linkedin.com/in/blythe-adamson-phd-mph-2b820284/), and follow the activities of [Flatiron Health](https://flatiron.com/) on [LinkedIn](https://www.linkedin.com/company/flatiron-health/), [X](https://x.com/flatironhealth), and [Instagram](https://www.instagram.com/flatironhealth).
 
-✉️
 
 If you want to give me feedback on the episode or suggest potential guests, contact me over [LinkedIn](https://www.linkedin.com/in/mathieu-chaffard/) or via [email](https://www.notion.so/91e82b93ad6a4061858494c158a20b35?pvs=21)!
-
-⭐️
 
 And if you liked the episode, please share it, subscribe to the podcast, and leave a 5-star review on streaming platforms!
 
