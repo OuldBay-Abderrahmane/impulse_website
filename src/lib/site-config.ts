@@ -33,6 +33,7 @@ export const SITE = {
   hostPhoto: "/static/images/site/host-photo.jpg",
   assets: {
     brandLogo: "/static/images/site/brand-logo.png",
+    favicon: "/static/images/site/favicon.png",
     healthPodcastNetworkBadge: "/static/images/site/health-podcast-network.png",
     linkedInIcon: "/static/images/site/linkedin.png",
     wave: "/static/images/site/Home_Page.svg"
@@ -51,7 +52,7 @@ export const SITE = {
     brandLinkedIn: "https://www.linkedin.com/company/impulsepodcast/?viewAsMember=true",
     personalLinkedIn: "https://www.linkedin.com/in/mathieu-chaffard/",
     contactEmail: "mailto:mathieu@impulsepodcast.com",
-    healthPodcastNetwork: "https://healthpodcastnetwork.com/show/impulse/"
+    healthPodcastNetwork: "https://healthpodcastlibrary.com/shows/impulse-meeting-healthcare-pioneers"
   },
   collaborationPrompt:
     "A sponsoring campaign, a co-production, a cross-promotion, or simply a guest proposal to make?",

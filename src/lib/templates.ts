@@ -22,7 +22,7 @@ interface PageOptions {
 
 function pageTitle(title: string): string {
   if (title === SITE.name) {
-    return `${SITE.name} I Meeting Healthcare Pioneers`;
+    return `${SITE.name} | Meeting Healthcare Pioneers`;
   }
 
   return `${title} | ${SITE.name}`;
@@ -846,6 +846,7 @@ function renderBasePage(options: PageOptions): string {
     <meta property="og:description" content="${escapeAttribute(description)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${escapeAttribute(siteUrlForPath(options.path))}">
+    <link rel="icon" href="${escapeAttribute(assetPath(SITE.assets.favicon))}" type="image/png">
     <link rel="stylesheet" href="${escapeAttribute(sitePath("/static/styles.css"))}">
   </head>
   <body>
