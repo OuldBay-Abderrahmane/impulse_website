@@ -136,9 +136,9 @@ the current images, audio, documents, and transcripts without deleting existing
 bucket objects. CI checks the upload plan with a dry run and needs no credentials.
 
 Episode validation checks required frontmatter, duplicate episode numbers and
-slugs, local cover images and preview clips, and downloadable transcripts for
-episodes with a YouTube link. Add new media and transcripts to the repository
-alongside each episode so the pipeline can validate and upload them.
+slugs, and local cover images and preview clips. Transcripts are optional, even
+for episodes with a YouTube link; when present, they are included in the site
+and upload plan automatically.
 
 The shared action lives in [.github/actions/sync-r2/action.yml](/Users/myceane/impulse_website/.github/actions/sync-r2/action.yml).
 The upload uses Cloudflare's documented [S3-compatible JavaScript SDK integration](https://developers.cloudflare.com/r2/examples/aws/aws-sdk-js-v3/).
