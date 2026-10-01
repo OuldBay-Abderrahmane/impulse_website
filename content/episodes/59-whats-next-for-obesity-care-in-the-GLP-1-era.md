@@ -14,7 +14,7 @@ tags:
   - Personalized healthcare
 links:
   spotify: "https://open.spotify.com/episode/0pfKVmQoqxhf3XlkBSIM0b"
-  apple: ""
+  apple: "https://podcasts.apple.com/us/podcast/59-whats-next-for-obesity-care-in-the-glp-1-era-kim/id1608213336?i=1000792600511"
   amazon: "https://music.amazon.fr/podcasts/900f59b7-3488-4033-bfe2-3dddf903ffcb/episodes/9ca017e9-5857-4700-870c-072622a156ca/impulse-meeting-healthcare-pioneers-59---what%E2%80%99s-next-for-obesity-care-in-the-glp-1-era---kim-boyd---weight-watchers"
   youtube: "https://www.youtube.com/watch?v=F52tH9Q92Iw"
   rss: "https://feeds.megaphone.fm/impulse"
