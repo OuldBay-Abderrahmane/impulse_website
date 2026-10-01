@@ -15,6 +15,8 @@ interface PageOptions {
   title: string;
   path: string;
   description?: string;
+  socialImage?: string;
+  socialImageAlt?: string;
   body: string;
   scripts?: string[];
   stickyPlayerEpisode?: Episode | null;
@@ -26,6 +28,16 @@ function pageTitle(title: string): string {
   }
 
   return `${title} | ${SITE.name}`;
+}
+
+function absoluteAssetUrl(pathname: string): string {
+  const resolvedPath = assetPath(pathname);
+
+  if (/^https?:\/\//i.test(resolvedPath)) {
+    return resolvedPath;
+  }
+
+  return siteUrlForPath(pathname);
 }
 
 function navLink(path: string, label: string, currentPath: string): string {
@@ -829,6 +841,8 @@ function renderEpisodeCard(episode: Episode): string {
 
 function renderBasePage(options: PageOptions): string {
   const description = options.description ?? SITE.description;
+  const socialImage = options.socialImage ?? SITE.assets.brandLogo;
+  const socialImageAlt = options.socialImageAlt ?? `${SITE.name} podcast`;
   const scriptSet = new Set<string>([
     sitePath("/static/client/player.js"),
     sitePath("/static/client/carousels.js"),
@@ -846,6 +860,10 @@ function renderBasePage(options: PageOptions): string {
     <meta property="og:description" content="${escapeAttribute(description)}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="${escapeAttribute(siteUrlForPath(options.path))}">
+    <meta property="og:image" content="${escapeAttribute(absoluteAssetUrl(socialImage))}">
+    <meta property="og:image:alt" content="${escapeAttribute(socialImageAlt)}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="${escapeAttribute(absoluteAssetUrl(socialImage))}">
     <link rel="icon" href="${escapeAttribute(assetPath(SITE.assets.favicon))}" type="image/png">
     <link rel="stylesheet" href="${escapeAttribute(sitePath("/static/styles.css"))}">
   </head>
@@ -1040,6 +1058,8 @@ export function renderEpisodePage(episode: Episode, episodes: Episode[]): string
     title: episode.title,
     path: `/episodes/${episode.slug}`,
     description: episode.summary,
+    socialImage: episode.image,
+    socialImageAlt: `${guestName} on ${SITE.name}`,
     stickyPlayerEpisode,
     body: `
       <main>
