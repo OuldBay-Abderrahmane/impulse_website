@@ -866,6 +866,15 @@ function renderBasePage(options: PageOptions): string {
     <meta name="twitter:image" content="${escapeAttribute(absoluteAssetUrl(socialImage))}">
     <link rel="icon" href="${escapeAttribute(assetPath(SITE.assets.favicon))}" type="image/png">
     <link rel="stylesheet" href="${escapeAttribute(sitePath("/static/styles.css"))}">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-22DVRVLRKL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-22DVRVLRKL');
+    </script>
   </head>
   <body>
     <div class="page-bg page-bg--top"></div>
