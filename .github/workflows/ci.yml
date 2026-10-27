@@ -27,6 +27,9 @@ jobs:
       - name: Validate markdown episodes
         run: npm run validate:episodes
 
+      - name: Run tests
+        run: npm test
+
       - name: Build site and sync catalog
         run: npm run build
 

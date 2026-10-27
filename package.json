@@ -7,6 +7,7 @@
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "compile": "npm run clean && tsc -p tsconfig.json",
     "build": "npm run compile && node dist/scripts/sync-episodes.js",
+    "test": "npm run compile && node --test dist/lib/*.test.js",
     "validate:episodes": "npm run compile && node dist/scripts/validate-episodes.js",
     "transcripts:fetch": "./scripts/fetch-youtube-captions.sh",
     "transcripts:import": "npm run compile && node dist/scripts/import-youtube-transcripts.js",

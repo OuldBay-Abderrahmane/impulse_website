@@ -9,6 +9,33 @@ export interface CatalogOptions {
   markdownEpisodesDir: string;
 }
 
+export interface EpisodeRedirectTarget {
+  number: number;
+  slug: string;
+}
+
+export function buildEpisodeRedirectLookup(
+  episodes: EpisodeRedirectTarget[]
+): Map<number, string> {
+  return new Map(
+    episodes.map((episode) => [episode.number, `/episodes/${episode.slug}`])
+  );
+}
+
+export function resolveLegacyEpisodeRedirect(
+  pathname: string,
+  search: string,
+  lookup: Map<number, string>
+): string | null {
+  const match = pathname.match(/^\/episode-(\d+)\/?$/i);
+  if (!match) {
+    return null;
+  }
+
+  const destination = lookup.get(Number(match[1]));
+  return destination ? `${destination}${search}` : null;
+}
+
 async function ensureParentDirectory(pathname: string): Promise<void> {
   await mkdir(dirname(pathname), { recursive: true });
 }

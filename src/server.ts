@@ -5,6 +5,11 @@ import { fileURLToPath } from "node:url";
 import { dirname, extname, join, resolve } from "node:path";
 import type { IncomingMessage, ServerResponse } from "node:http";
 
+import {
+  buildEpisodeRedirectLookup,
+  resolveLegacyEpisodeRedirect,
+  type EpisodeRedirectTarget
+} from "./lib/catalog.js";
 import { renderNotFoundPage } from "./lib/templates.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -13,6 +18,10 @@ const projectRoot = resolve(__dirname, "..");
 const publicDir = join(projectRoot, "public");
 const clientDir = join(projectRoot, "dist", "client");
 const episodesApiPath = join(publicDir, "data", "episodes.json");
+
+const episodeRedirectLookup = buildEpisodeRedirectLookup(
+  JSON.parse(await readFile(episodesApiPath, "utf8")) as EpisodeRedirectTarget[]
+);
 
 function sendHtml(response: ServerResponse<IncomingMessage>, statusCode: number, html: string) {
   response.writeHead(statusCode, {
@@ -30,6 +39,17 @@ function sendJson(
     "Content-Type": "application/json; charset=utf-8"
   });
   response.end(JSON.stringify(payload));
+}
+
+function sendPermanentRedirect(
+  response: ServerResponse<IncomingMessage>,
+  location: string
+) {
+  response.writeHead(301, {
+    "Cache-Control": "public, max-age=86400",
+    Location: location
+  });
+  response.end();
 }
 
 function contentTypeForPath(pathname: string): string {
@@ -210,6 +230,19 @@ const server = createServer(async (request, response) => {
   const pathname = url.pathname;
 
   try {
+    if (request.method === "GET" || request.method === "HEAD") {
+      const legacyEpisodeLocation = resolveLegacyEpisodeRedirect(
+        pathname,
+        url.search,
+        episodeRedirectLookup
+      );
+
+      if (legacyEpisodeLocation) {
+        sendPermanentRedirect(response, legacyEpisodeLocation);
+        return;
+      }
+    }
+
     if (pathname.startsWith("/static/")) {
       await serveStatic(request, response, pathname);
       return;
